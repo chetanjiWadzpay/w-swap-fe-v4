@@ -1,0 +1,57 @@
+########################################
+# FAST LOCAL DEVELOPMENT PROFILE (DEFAULT)
+########################################
+[profile.default]
+solc = "0.8.26"
+evm_version = "cancun"
+
+# 🔥 speed optimizations
+via_ir = false
+optimizer = true
+optimizer_runs = 200
+
+# reasonable limits
+gas_limit = "300000000"
+bytecode_hash = "none"
+
+# permissions
+ffi = true
+fs_permissions = [
+  { access = "read-write", path = ".forge-snapshots/" },
+  { access = "read", path = "./out" },
+  { access = "read", path = "./test/bin" }
+]
+
+allow_internal_expect_revert = true
+
+
+########################################
+# DEBUG PROFILE (even faster, less strict)
+########################################
+[profile.debug]
+via_ir = false
+optimizer = false
+fuzz.runs = 50
+
+
+########################################
+# CI / PRODUCTION PROFILE (SLOW BUT SAFE)
+########################################
+[profile.ci]
+via_ir = true
+optimizer = true
+optimizer_runs = 44444444
+
+
+########################################
+# FUZZING CONFIGS
+########################################
+[profile.default.fuzz]
+runs = 200
+seed = "0x4444"
+
+[profile.pr.fuzz]
+runs = 10000
+
+[profile.ci.fuzz]
+runs = 100000

@@ -1,0 +1,6 @@
+node_modules
+dist
+uniswap-2-interface/.env
+uniswap-2-interface/.env
+.env
+uniswap-v4-foundry/v4-core/.env
